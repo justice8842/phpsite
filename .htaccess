@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /route/
+    
+    # Handle root redirection
+    RewriteRule ^$ index.php?url= [L,QSA]
+    
+    # Handle existing files/directories
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Redirect all other requests to index.php
+    RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+</IfModule>
